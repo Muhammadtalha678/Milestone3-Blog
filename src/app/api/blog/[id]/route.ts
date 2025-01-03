@@ -1,5 +1,5 @@
 import {blogData} from '@/app/api/blog/route'
-export async function GET({ params }: { params: Promise<{ id: string }> }) {
+export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
     const id = (await params).id // 'a', 'b', or 'c'
     const singleBlog = blogData.find((e) => e.id == parseInt(id))
     if (singleBlog) {
