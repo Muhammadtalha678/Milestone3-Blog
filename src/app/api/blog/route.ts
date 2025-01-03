@@ -1,4 +1,4 @@
-export const blogData = [
+ const blogData = [
     {
         id: 1,
         title: "The Beauty of Sustainable Living",
