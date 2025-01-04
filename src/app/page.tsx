@@ -8,7 +8,7 @@ export default function Home() {
         Implement a comments section using React state.
         <span className='bg-slate-300 '>Navigate to Blogs page to see functionality.</span>
       </h1>
-      <Link href="/" className='mt-10 bg-indigo-400 p-2 rounded-md text-white'>
+      <Link href="/blogs" className='mt-10 bg-indigo-400 p-2 rounded-md text-white'>
         Blogs
       </Link>
     </div>

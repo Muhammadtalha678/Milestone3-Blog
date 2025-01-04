@@ -51,7 +51,8 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     }
     else {
         return Response.json({
-            msg:"Blog Not Found"
+            error:true,
+            msg: "Blog Not Found"
         })
     }
 }
