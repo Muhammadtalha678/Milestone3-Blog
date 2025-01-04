@@ -1,7 +1,21 @@
-import React from 'react'
+'use client'
+import React,{useState} from 'react'
 import Image from 'next/image'
 import { Blog } from '@/interfaces/Blog'
-const SingleBlog = ({singleBlog}:{singleBlog:Blog}) => {
+const SingleBlog = ({ singleBlog }: { singleBlog: Blog }) => {
+  const [comment, setComment] = useState('')
+  const [comments, setComments] = useState<string[]>([])
+  
+  const onCommentSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log(comment.trim());
+    
+    if (comment.trim() !== '') {
+      setComments([...comments, comment])
+      setComment('')
+    }
+
+  }
   return (
     <div>
       {/* Blog Image */}
@@ -29,11 +43,12 @@ const SingleBlog = ({singleBlog}:{singleBlog:Blog}) => {
       {/* Comment Section */}
       <div className="bg-gray-100 p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-4">Comments</h2>
-        <form className="mb-6">
+        <form className="mb-6" onSubmit={onCommentSubmit}>
           <textarea
             className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
             rows={4}
-            placeholder="Write a comment..."
+            placeholder="Write a comment..." onChange={(e) => { setComment(e.target.value) }} 
+            value={comment} 
           ></textarea>
           <button
             type="submit"
@@ -44,18 +59,19 @@ const SingleBlog = ({singleBlog}:{singleBlog:Blog}) => {
         </form>
         <div>
           {/* Example Comment */}
-          <div className="border-b pb-4 mb-4">
-            <p className="text-gray-600">
-              <span className="font-semibold">John Doe:</span> This is such a
-              thought-provoking article. Thanks for sharing!
+          {
+            comments.length > 0 ?
+            comments.map((e: string,index:number) => (
+              <div className="border-b pb-4 mb-4" key={index}>
+              <p className="text-gray-600">
+              <span className="font-semibold">Anonymus:</span> 
+              {e}
             </p>
           </div>
-          <div className="border-b pb-4 mb-4">
-            <p className="text-gray-600">
-              <span className="font-semibold">Jane Smith:</span> I love how you
-              explained sustainable living. Very inspiring!
-            </p>
-          </div>
+            ))
+              : <p className="text-gray-500">No comments yet. Be the first to comment!</p>
+          }
+          
         </div>
       </div>
     </div>
