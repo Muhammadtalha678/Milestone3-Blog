@@ -1,7 +1,7 @@
 'use client'; // Error boundaries must be Client Components
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+
 export default function Error({
   error,
   reset,
@@ -12,7 +12,7 @@ export default function Error({
   useEffect(() => {
     console.error(error); // Log the error for debugging
   }, [error]);
-  const router = useRouter();
+
   return (
     <div className="p-4 text-center">
       <h2 className="text-2xl font-bold text-red-500 mb-4">
